@@ -7,6 +7,13 @@ Cameron Lowry - 2025
 * Users and tasks are loaded into the app via JSON files when the app starts.
 * Subsequent task status changes are saved in localStorage. Clear localStorage for the site to start over.
 
+## Get started
+* Clone the repo locally
+* Make sure to use node 22.x
+* Run `npm install`
+* Run `npm start`
+* Navigate the the generated application url
+
 ## Code standards
 Use [BEM](https://getbem.com/naming) for CSS class names
 
