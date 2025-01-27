@@ -1,0 +1,33 @@
+<div class="task-it-app">
+  <app-header></app-header>
+
+  <main>
+    <ul id="users">
+      @for (user of users; track user.id) {
+        <li>
+          <app-user
+            [id]="user.id"
+            [avatar]="user.avatar"
+            [name]="user.name"
+            [selected]="selectedUser?.id === user.id"
+            (select)="onSelectUser($event)"
+          />
+        </li>
+      }
+    </ul>
+
+    <div class="tasks-wrapper">
+      @if (selectedUser) {
+        <app-tasks [user]="selectedUser"></app-tasks>
+      } @else {
+        <section role="alert">
+          <p class="fallback">Select a user...</p>
+
+          <app-illustration image="/assets/illustrations/team-goals-bro.svg" alt="Illustration of team working together to achieve goals" />
+        </section>
+      }
+    </div>
+  </main>
+
+  <app-footer />
+</div>

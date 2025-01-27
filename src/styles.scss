@@ -1,0 +1,44 @@
+@use "@angular/material" as mat;
+
+@import "./styles/mixins";
+
+html {
+  background-color: var(--magenta-lightest);
+
+  &:has(dialog) {
+    overflow: hidden;
+  }
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--violet) var(--magenta-light);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--magenta-light);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--violet);
+  border-radius: 10px;
+  border: 3px solid var(--magenta-light);
+}
+/* ===== End Scrollbar CSS ===== */

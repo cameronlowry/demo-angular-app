@@ -1,0 +1,64 @@
+<app-card>
+  <article [class.complete]="task().status === 'completed'">
+    <h2>{{ task().name }}</h2>
+    <p>{{ task().description }}</p>
+
+    <mat-divider class="spacer"></mat-divider>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="task().status" (change)="onSelectStatus()">
+        @for (option of statusOptions; track $index) {
+          <mat-option [value]="option">
+            {{ option }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <p>
+      <label>Due: </label>
+      @if (task().dueDate) {
+        <time [class.warn]="isPastDue(task())"
+          >{{ task().dueDate | date: "fullDate" }}
+          {{ isPastDue(task()) ? " - Past Due!" : "" }}</time
+        >
+      } @else {
+        -
+      }
+    </p>
+
+    <p>
+      <label>Updated: </label>
+      @if (task().updatedAt) {
+        <time>{{ task().updatedAt | date: "fullDate" }}</time>
+      } @else {
+        -
+      }
+    </p>
+
+    <div class="actions">
+      @if (!isTaskComplete()) {
+        <button
+          mat-flat-button
+          (click)="onCompleteTask()"
+          aria-label="Change status to completed"
+          matTooltip="Change status to completed"
+          matTooltipPosition="above"
+        >
+          Complete
+        </button>
+      } @else {
+        <button
+          mat-icon-button
+          (click)="onDeleteTask()"
+          aria-label="Permanently delete this task"
+          matTooltip="Permanently delete this task"
+          matTooltipPosition="above"
+        >
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      }
+    </div>
+  </article>
+</app-card>

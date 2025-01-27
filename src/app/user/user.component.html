@@ -1,0 +1,11 @@
+<app-card>
+  <button
+    mat-ripple
+    (click)="onSelectUser()"
+    [class.active]="selected()"
+    aria-label="Select this user"
+  >
+    <img [src]="imagePath()" [alt]="name() + '\'s avatar'" />
+    <span>{{ name() }}</span>
+  </button>
+</app-card>

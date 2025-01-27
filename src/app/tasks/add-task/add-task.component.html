@@ -1,0 +1,88 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Add task</h2>
+
+  <form (ngSubmit)="onSubmit()" name="taskForm">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+
+        <input
+          id="name"
+          matInput
+          placeholder="e.g. Fix Login Bug"
+          [(ngModel)]="name"
+          [ngModelOptions]="{ standalone: true }"
+          required
+          #title="ngModel"
+        />
+        <mat-error>Every task must have a title</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="e.g. Investigate and resolve the issue causing login failures."
+          id="summary"
+          rows="5"
+          name="summary"
+          [(ngModel)]="description"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field
+        appearance="fill"
+        class="example-form-field"
+        (click)="datepicker.open()"
+      >
+        <mat-label>Due date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="datepicker"
+          [(ngModel)]="dueDate"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker
+          #datepicker
+          placeholder="Date for completing the task (optional)"
+        >
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+    </p>
+
+    <p class="actions">
+      <button
+        mat-button
+        type="button"
+        (click)="onCancel()"
+        aria-label="Discard new task and close modal"
+      >
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        type="submit"
+        aria-label="Creates a new task"
+        matTooltip="Create a new task"
+        matTooltipPosition="above"
+      >
+        Create
+      </button>
+    </p>
+  </form>
+</dialog>

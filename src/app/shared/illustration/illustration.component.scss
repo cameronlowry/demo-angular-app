@@ -1,0 +1,12 @@
+.illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.illustration__image {
+  padding: 1rem;
+  max-width: 80%;
+}

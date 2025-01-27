@@ -1,0 +1,37 @@
+@import "../../../styles/mixins";
+
+article {
+  padding: 1rem;
+  background-color: var(--magenta-light);
+
+  &.complete {
+    background-color: var(--light-grey);
+  }
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+}
+
+mat-divider.spacer {
+  margin: 0.5rem 0 1rem 0;
+  border-color: transparent;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+label {
+  color: var(--magenta-dark);
+}
+
+.actions {
+  text-align: right;
+  margin: 0;
+}
+
+.warn {
+  color: var(--mat-form-field-error-text-color, var(--mat-app-error));
+}

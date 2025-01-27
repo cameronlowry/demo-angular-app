@@ -1,0 +1,60 @@
+@if (showAddTask) {
+  <app-add-task [userId]="user().id" (close)="onCloseAddTask()"></app-add-task>
+}
+
+<section id="tasks">
+  <header>
+    <h2>{{ user().name }}'s Tasks</h2>
+    <menu>
+      <button
+        mat-raised-button
+        (click)="onOpenAddTask()"
+        aria-label="Add a new task"
+        matTooltip="Add a new task"
+        matTooltipPosition="above"
+      >
+        Add Task
+      </button>
+    </menu>
+  </header>
+
+  <ul>
+    @if (activeUserTasks.length > 0) {
+      @for (task of activeUserTasks; track task.id) {
+        <li>
+          <app-task [task]="task" />
+        </li>
+      }
+    } @else if (completedUserTasks.length > 0) {
+      <div>
+        <li class="fallback">No active tasks...</li>
+      </div>
+    }
+
+    @if (completedUserTasks.length > 0) {
+      <li>
+        <mat-divider></mat-divider>
+
+        <h4>Completed tasks</h4>
+      </li>
+      @for (task of completedUserTasks; track task.id) {
+        <li>
+          <app-task [task]="task" />
+        </li>
+      }
+    } @else if (activeUserTasks.length > 0) {
+      <li class="fallback">No completed tasks...</li>
+    }
+  </ul>
+
+  @if (!activeUserTasks.length && !completedUserTasks.length) {
+    <div>
+      <p class="fallback">It's looking quite empty here.</p>
+      <h4 class="fallback">Add a new task to get started!</h4>
+      <app-illustration
+        image="/assets/illustrations/team-spirit-bro.svg"
+        alt=""
+      />
+    </div>
+  }
+</section>
